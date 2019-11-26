@@ -22,6 +22,7 @@ namespace HardwareInventoryApp
     {
         public MainWindow()
         {
+            //init change
             InitializeComponent();
         }
     }
