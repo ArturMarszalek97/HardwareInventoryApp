@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HardwareInventoryService.Models.Models.Authorization;
+using HardwareInventoryService.ServicesReferences.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +24,6 @@ namespace HardwareInventoryApp
     {
         public MainWindow()
         {
-            //init change
             InitializeComponent();
         }
     }
