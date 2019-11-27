@@ -50,9 +50,6 @@
     <Reference Include="HardwareInventoryService.Models">
       <HintPath>..\..\HardwareInventoryService\HardwareInventoryService.ServicesReferences\bin\Debug\HardwareInventoryService.Models.dll</HintPath>
     </Reference>
-    <Reference Include="HardwareInventoryService.ServicesReferences">
-      <HintPath>..\..\HardwareInventoryService\HardwareInventoryService.ServicesReferences\bin\Debug\HardwareInventoryService.ServicesReferences.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -80,8 +77,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IoCContainer\ContainerConfig.cs" />
+    <Compile Include="ViewModels\LoginPanelViewModel.cs" />
+    <Compile Include="Views\LoginPanelView.xaml.cs">
+      <DependentUpon>LoginPanelView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,8 +112,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\..\HardwareInventoryService\HardwareInventoryService.ServicesReferences\HardwareInventoryService.ServicesReferences.csproj">
+      <Project>{7930E281-F196-483D-969D-F2EDAC3527B1}</Project>
+      <Name>HardwareInventoryService.ServicesReferences</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\LoginPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
