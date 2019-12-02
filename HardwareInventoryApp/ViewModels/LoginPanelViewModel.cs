@@ -15,16 +15,21 @@ namespace HardwareInventoryApp.ViewModels
     {
         private readonly IAuthorizationService _authorizationService;
 
-        public LoginPanelViewModel(/*IAuthorizationService authorizationService*/)
+        private readonly IWindowManager _windowManager;
+
+        public LoginPanelViewModel(IWindowManager windowManager)
         {
             this._authorizationService = ContainerConfig._container.Resolve<IAuthorizationService>();
+            this._windowManager = windowManager;
 
             var newSession = new Session();
             newSession.Username = "testowyUsername";
 
             var test = this._authorizationService.Authorize(newSession);
 
-            var bo = 1;
+            var mvm = new MainWindowViewModel();
+
+            this._windowManager.ShowWindow(mvm);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using Autofac;
+using Caliburn.Micro;
 using HardwareInventoryApp.IoCContainer;
 using HardwareInventoryApp.ViewModels;
 using System;
@@ -12,6 +13,8 @@ namespace HardwareInventoryApp
 {
     public class Bootstrapper : BootstrapperBase
     {
+        private static IContainer Container;
+
         public Bootstrapper()
         {
             Initialize();
@@ -19,8 +22,40 @@ namespace HardwareInventoryApp
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            ContainerConfig.Configure();
+            
             DisplayRootViewFor<LoginPanelViewModel>();
+        }
+
+        protected override void Configure()
+        {
+            ContainerConfig.Configure();
+            Container = ContainerConfig._container;
+        }
+
+        protected override IEnumerable<object> GetAllInstances(Type service)
+        {
+            return Container.Resolve(typeof(IEnumerable<>).MakeGenericType(service)) as IEnumerable<object>;
+        }
+
+        protected override object GetInstance(Type service, string key)
+        {
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                if (Container.IsRegistered(service))
+                    return Container.Resolve(service);
+            }
+            else
+            {
+                if (Container.IsRegisteredWithKey(key, service))
+                {
+                    return Container.ResolveKeyed(key, service);
+                }
+            }
+            throw new Exception(string.Format("Could not locate any instances of contract {0}.", key ?? service.Name));
+        }
+        protected override void BuildUp(object instance)
+        {
+            Container.InjectProperties(instance);
         }
     }
 }

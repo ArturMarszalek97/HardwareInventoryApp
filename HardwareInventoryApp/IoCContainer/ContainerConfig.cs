@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Caliburn.Micro;
+using HardwareInventoryApp.ViewModels;
 using HardwareInventoryService.ServicesReferences.Services;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,8 @@ namespace HardwareInventoryApp.IoCContainer
 
             builder.RegisterType<LoggerService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AuthorizationService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<LoginPanelViewModel>().SingleInstance();
+            builder.Register<IWindowManager>(c => new WindowManager()).InstancePerLifetimeScope();
 
             _container = builder.Build();
         }
