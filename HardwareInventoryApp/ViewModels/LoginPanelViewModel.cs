@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HardwareInventoryApp.ViewModels
 {
@@ -17,19 +18,53 @@ namespace HardwareInventoryApp.ViewModels
 
         private readonly IWindowManager _windowManager;
 
+        private string login;
+
+        private string password;
+
+        public string Login
+        {
+            get { return login; }
+            set { login = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
         public LoginPanelViewModel(IWindowManager windowManager)
         {
             this._authorizationService = ContainerConfig._container.Resolve<IAuthorizationService>();
             this._windowManager = windowManager;
+        }
 
+        public void CloseApp()
+        {
+            this.TryClose();
+        }
+
+        public void LogIn()
+        {
             var newSession = new Session();
-            newSession.Username = "testowyUsername";
+            newSession.Username = this.Login;
+            newSession.Password = this.Password;
 
-            var test = this._authorizationService.Authorize(newSession);
+            try
+            {
+                var test = this._authorizationService.Authorize(newSession);
 
-            var mvm = new MainWindowViewModel();
+                var mainWindowViewModel = ContainerConfig._container.Resolve<MainWindowViewModel>();
+                
+                this._windowManager.ShowWindow(mainWindowViewModel);
 
-            this._windowManager.ShowWindow(mvm);
+                this.TryClose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
