@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Caliburn.Micro;
+using HardwareInventoryApp.Helpers;
 using HardwareInventoryApp.IoCContainer;
 using HardwareInventoryApp.ViewModels;
 using System;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace HardwareInventoryApp
 {
@@ -18,6 +20,8 @@ namespace HardwareInventoryApp
         public Bootstrapper()
         {
             Initialize();
+
+            ConventionManager.AddElementConvention<PasswordBox>(PasswordBoxHelper.BoundPasswordProperty, "Password", "PasswordChanged");
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
