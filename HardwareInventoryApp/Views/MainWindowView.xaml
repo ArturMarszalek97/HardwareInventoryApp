@@ -106,9 +106,9 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Button.RenderTransform>
-                    <!--<Button.Background>
-                        --><!--<ImageBrush ImageSource="/Assets/pexels-photo-247885.jpeg" Stretch="UniformToFill"/>--><!--
-                    </Button.Background>-->
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding SecondPicture}" Stretch="UniformToFill"/>
+                    </Button.Background>
                 </Button>
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50" Margin="10">
                     <materialDesign:PackIcon Kind="InformationOutline" Width="40" Height="40"/>
@@ -202,10 +202,10 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1" Background="#FF3580BF">
-                <!--<Image Height="150" VerticalAlignment="Top" Source="/Assets/back.jpg" Stretch="UniformToFill"/>-->
+                <Image Height="150" VerticalAlignment="Top" Source="/Assets/back.jpg" Stretch="UniformToFill"/>
                 <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 100" Stroke="White">
                     <!--<Ellipse.Fill>
-                        <ImageBrush ImageSource="/Assets/pexels-photo-247885.jpeg" Stretch="UniformToFill"/>
+                        <ImageBrush x:Name="SecondPicture" Stretch="UniformToFill"/>
                     </Ellipse.Fill>-->
                 </Ellipse>
                 <TextBlock Text="Artur" Foreground="White" FontSize="28" FontFamily="Nirmala UI Semilight" Margin="10 100" VerticalAlignment="Top"/>

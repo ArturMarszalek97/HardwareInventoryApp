@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Caliburn.Micro;
+using HardwareInventoryApp.Helpers;
 using HardwareInventoryApp.IoCContainer;
 using HardwareInventoryService.Models.Models.Authorization;
 using HardwareInventoryService.ServicesReferences.Contracts;
@@ -54,6 +55,8 @@ namespace HardwareInventoryApp.ViewModels
             try
             {
                 var test = this._authorizationService.Authorize(newSession);
+
+                Data.Session = test;
 
                 var mainWindowViewModel = ContainerConfig._container.Resolve<MainWindowViewModel>();
                 
