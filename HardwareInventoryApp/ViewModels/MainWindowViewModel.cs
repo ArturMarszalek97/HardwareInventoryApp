@@ -15,18 +15,18 @@ namespace HardwareInventoryApp.ViewModels
     {
         private readonly IWindowManager _windowManager;
 
-        private ImageSource secondPicture;
+        private ImageSource accountPhoto;
 
-        public ImageSource SecondPicture
+        public ImageSource AccountPhoto
         {
-            get { return secondPicture; }
-            set { secondPicture = value; }
+            get { return accountPhoto; }
+            set { accountPhoto = value; }
         }
 
         public MainWindowViewModel(IWindowManager windowManager)
         {
             this._windowManager = windowManager;
-            this.SecondPicture = this.ToImage(Data.Session.AccountPhoto);
+            this.AccountPhoto = this.ToImage(Data.Session.AccountPhoto);
         }
 
         public BitmapImage ToImage(byte[] array)
