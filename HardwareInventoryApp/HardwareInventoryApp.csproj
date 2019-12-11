@@ -86,8 +86,12 @@
     <Compile Include="Helpers\Data.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="IoCContainer\ContainerConfig.cs" />
+    <Compile Include="ViewModels\ListOfThingsViewModel.cs" />
     <Compile Include="ViewModels\LoginPanelViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\ListOfThingsView.xaml.cs">
+      <DependentUpon>ListOfThingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginPanelView.xaml.cs">
       <DependentUpon>LoginPanelView.xaml</DependentUpon>
     </Compile>
@@ -130,6 +134,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ListOfThingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

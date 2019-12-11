@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace HardwareInventoryApp.ViewModels
 {
-    public class MainWindowViewModel : Screen
+    public class MainWindowViewModel : Conductor<object>
     {
         private readonly IWindowManager _windowManager;
 
