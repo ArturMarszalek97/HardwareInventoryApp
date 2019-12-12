@@ -9,13 +9,47 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <CollectionViewSource x:Key="src" Source="{Binding ListOfItems}">
-
+                <CollectionViewSource.GroupDescriptions>
+                    <PropertyGroupDescription PropertyName="Category" />
+                </CollectionViewSource.GroupDescriptions>
             </CollectionViewSource>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <ListView Margin="10" ItemsSource='{Binding Source={StaticResource src}}' IsSynchronizedWithCurrentItem="True">
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Margin" Value="0,0,0,5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="False" BorderBrush="White"  BorderThickness="0,0,0,1">
+                                            <Expander.Header>
+                                                <DockPanel>
+                                                    <TextBlock Text="Kategoria: " FontWeight="Bold" Foreground="Black" Margin="5,0,0,0" Width="auto"/>
+                                                    <TextBlock Text="{Binding Name}" Foreground="Red" FontWeight="Bold"/>
+                                                    <TextBlock Text=" Liczba rekordów: " FontWeight="Bold" Foreground="Black"/>
+                                                    <TextBlock Text="{Binding ItemCount}" Foreground="Green" FontWeight="Bold"/>
+                                                </DockPanel>
+                                            </Expander.Header>
+                                            <Expander.Content>
+                                                <ItemsPresenter />
+                                            </Expander.Content>
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

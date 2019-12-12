@@ -187,7 +187,7 @@
                 </ListViewItem>
             </ListView>
         </StackPanel>
-        <Grid x:Name="GridMain" Background="#FFFBFBFB" Width="1024" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="GridMain" Background="#FFDEDEDE" Width="1024" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
