@@ -20,6 +20,7 @@ namespace HardwareInventoryApp.IoCContainer
 
             builder.RegisterType<LoggerService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AuthorizationService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<CacheService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<LoginPanelViewModel>().SingleInstance();
             builder.RegisterType<MainWindowViewModel>().SingleInstance();
             builder.Register<IWindowManager>(c => new WindowManager()).InstancePerLifetimeScope();

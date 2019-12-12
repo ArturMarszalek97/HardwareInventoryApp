@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using HardwareInventoryApp.Helpers;
 using HardwareInventoryService.Models.Models.Authorization;
+using HardwareInventoryService.ServicesReferences.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace HardwareInventoryApp.ViewModels
     {
         private readonly IWindowManager _windowManager;
 
+        private readonly ICacheService _cacheService;
+
         private ImageSource accountPhoto;
 
         public ImageSource AccountPhoto
@@ -23,10 +26,16 @@ namespace HardwareInventoryApp.ViewModels
             set { accountPhoto = value; }
         }
 
-        public MainWindowViewModel(IWindowManager windowManager)
+        public MainWindowViewModel(IWindowManager windowManager, ICacheService cacheService)
         {
             this._windowManager = windowManager;
+            this._cacheService = cacheService;
             this.AccountPhoto = this.ToImage(Data.Session.AccountPhoto);
+
+            Data.Items = this._cacheService.GetItems().ToList();
+
+            var itemsVM = new ItemsViewModel();
+            ActivateItem(itemsVM);
         }
 
         public BitmapImage ToImage(byte[] array)

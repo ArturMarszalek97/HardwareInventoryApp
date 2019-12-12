@@ -1,4 +1,5 @@
-﻿using HardwareInventoryService.Models.Models.Authorization;
+﻿using HardwareInventoryService.Models.Models;
+using HardwareInventoryService.Models.Models.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace HardwareInventoryApp.Helpers
     public static class Data
     {
         public static Session Session { get; set; }
+
+        public static List<Item> Items { get; set; }
     }
 }
