@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace HardwareInventoryApp.ViewModels
 {
-    public class ListOfThingsViewModel : PropertyChangedBase
+    public class ItemsViewModel : PropertyChangedBase
     {
+
     }
 }
