@@ -153,14 +153,24 @@
   <ItemGroup>
     <Resource Include="Assets\home.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\CategoryIcons\agd.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\CategoryIcons\electronic.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\CategoryIcons\clothing.png" />
+    <Resource Include="Assets\CategoryIcons\health.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\CategoryIcons\fashion.png" />
+    <Resource Include="Assets\CategoryIcons\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\CategoryIcons\motorization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\CategoryIcons\office.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
