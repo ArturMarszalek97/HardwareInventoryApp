@@ -47,6 +47,38 @@ namespace HardwareInventoryApp.ViewModels
             foreach (var item in Data.Items)
             {
                 item.DateOfPurchaseToDisplay = item.DateOfPurchase.ToShortDateString();
+                
+                switch(item.Category)
+                {
+                    case "Elektronika":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/electronic.png";
+                        } break;
+                    case "Biuro":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/office.png";
+                        } break;
+                    case "Motoryzacja":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/motorization.png";
+                        } break;
+                    case "Dom":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/home.png";
+                        } break;
+                    case "AGD":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/agd.png";
+                        } break;
+                    case "Zdrowie":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/health.png";
+                        } break;
+                    case "Inne":
+                        {
+                            item.ImageSource = "/Assets/CategoryIcons/office.png";
+                        } break;
+                }
             }
         }
 

@@ -65,7 +65,7 @@
 
                         </Grid.RowDefinitions>
 
-                        <Image Grid.RowSpan="2" Source="/Assets/CategoryIcons/fashion.png" Margin="10,10,20,10" />
+                        <Image Grid.RowSpan="2" Source="{Binding ImageSource}" Margin="10,10,20,10" />
 
                         <TextBlock Grid.Column="1" Text="{Binding ItemName}" FontWeight="Bold" FontSize="18" Foreground="Black" Margin="5"/>
                         <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DateOfPurchaseToDisplay, StringFormat=Data zakupu: {0}}" Foreground="Black" Margin="5"/>
