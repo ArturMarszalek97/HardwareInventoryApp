@@ -32,10 +32,22 @@ namespace HardwareInventoryApp.ViewModels
             this._cacheService = cacheService;
             this.AccountPhoto = this.ToImage(Data.Session.AccountPhoto);
 
-            Data.Items = this._cacheService.GetItems().ToList();
+            this.GetData();
+
+            
 
             var itemsVM = new ItemsViewModel();
             ActivateItem(itemsVM);
+        }
+
+        private void GetData()
+        {
+            Data.Items = this._cacheService.GetItems().ToList();
+
+            foreach (var item in Data.Items)
+            {
+                item.DateOfPurchaseToDisplay = item.DateOfPurchase.ToShortDateString();
+            }
         }
 
         public BitmapImage ToImage(byte[] array)

@@ -33,7 +33,7 @@
                                         <Expander IsExpanded="False" BorderBrush="White"  BorderThickness="0,0,0,1">
                                             <Expander.Header>
                                                 <DockPanel>
-                                                    <TextBlock Text="Kategoria: " FontWeight="Bold" Foreground="Black" Margin="5,0,0,0" Width="auto"/>
+                                                    <TextBlock Text="Kategoria: " FontWeight="Bold" Foreground="Black"  Margin="5,0,0,0" Width="auto"/>
                                                     <TextBlock Text="{Binding Name}" Foreground="Red" FontWeight="Bold"/>
                                                     <TextBlock Text=" Liczba rekordów: " FontWeight="Bold" Foreground="Black"/>
                                                     <TextBlock Text="{Binding ItemCount}" Foreground="Green" FontWeight="Bold"/>
@@ -54,21 +54,34 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="5*" />
                             <RowDefinition Height="5*" />
+
                         </Grid.RowDefinitions>
 
-                        <Image Grid.RowSpan="2"  />
+                        <Image Grid.RowSpan="2" Source="/Assets/CategoryIcons/fashion.png" Margin="10,10,20,10" />
 
-                        <TextBlock Grid.Column="1" Text="{Binding ItemName}" Margin="5"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DateOfPurchase}" Margin="5"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ItemName}" FontWeight="Bold" FontSize="18" Foreground="Black" Margin="5"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DateOfPurchaseToDisplay, StringFormat=Data zakupu: {0}}" Foreground="Black" Margin="5"/>
 
-                        <TextBlock Grid.RowSpan="2" Grid.Column="2" Text="{Binding Price}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Grid.RowSpan="2" Grid.Column="2" Text="{Binding Price, StringFormat={}{0} PLN}" FontSize="20" Foreground="DeepSkyBlue" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="55,5,75,5"/>
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="CheckboxMarkedCircleOutline" Margin="5" />
+                            <TextBlock Text="{Binding Warranty, StringFormat={}{0} miesiące gwarancji}" Margin="2" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <materialDesign:PackIcon Kind="Backburger" Margin="5" />
+                            <TextBlock Text="{Binding Warranty, StringFormat={}{0} dni na zwrot}" Margin="2" />
+                        </StackPanel>
+
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
