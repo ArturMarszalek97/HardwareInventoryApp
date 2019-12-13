@@ -79,7 +79,7 @@
 
                         <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <materialDesign:PackIcon Kind="Backburger" Margin="5" />
-                            <TextBlock Text="{Binding Warranty, StringFormat={}{0} dni na zwrot}" Margin="2" />
+                            <TextBlock Text="{Binding Return, StringFormat={}{0} dni na zwrot}" Margin="2" />
                         </StackPanel>
 
                     </Grid>
