@@ -35,7 +35,7 @@
                                                 <DockPanel>
                                                     <TextBlock Text="Kategoria: " FontWeight="Bold" Foreground="Black"  Margin="5,0,0,0" Width="auto"/>
                                                     <TextBlock Text="{Binding Name}" Foreground="Red" FontWeight="Bold"/>
-                                                    <TextBlock Text=" Liczba rekordów: " FontWeight="Bold" Foreground="Black"/>
+                                                    <TextBlock Text="   Liczba urządzeń: " FontWeight="Bold" Foreground="Black"/>
                                                     <TextBlock Text="{Binding ItemCount}" Foreground="Green" FontWeight="Bold"/>
                                                 </DockPanel>
                                             </Expander.Header>
@@ -86,5 +86,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button x:Name="AddNewItem" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="70" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" ToolTip="Dodaj nowy sprzęt">
+            <materialDesign:PackIcon
+                Kind="Plus"
+                Height="24"
+                Width="24" />
+        </Button>
     </Grid>
 </UserControl>
