@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:HardwareInventoryApp.Views"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="AddNewItemView" Height="450" Width="450">
+        Title="AddNewItemView" Height="550" Width="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -39,5 +41,12 @@
             <Slider Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="100" />
         </StackPanel>
         <CheckBox Grid.Row="4" Grid.Column="1" Content="dożywotnia" Margin="10" />
+        <StackPanel Grid.Row="5" Margin="10" >
+            <TextBlock Text="Zwrot" />
+            <Slider Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="100" />
+        </StackPanel>
+        <CheckBox Grid.Row="5" Grid.Column="1" Content="bez ograniczeń" Margin="10" />
+        <Button Grid.Row="6">Anuluj</Button>
+        <Button Grid.Row="6" Grid.Column="1">Dodaj</Button>
     </Grid>
 </Window>
