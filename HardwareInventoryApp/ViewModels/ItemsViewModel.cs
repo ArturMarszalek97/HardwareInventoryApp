@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using HardwareInventoryApp.Helpers;
+using HardwareInventoryApp.Views;
 using HardwareInventoryService.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,12 @@ namespace HardwareInventoryApp.ViewModels
         public ItemsViewModel()
         {
             this.ListOfItems = Data.Items;
+        }
+
+        public void AddNewItem()
+        {
+            var addNewItemViewModel = new AddNewItemView();
+            addNewItemViewModel.ShowDialog();
         }
     }
 }
