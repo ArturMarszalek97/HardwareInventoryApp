@@ -1,4 +1,4 @@
-﻿<Window x:Class="HardwareInventoryApp.Views.AddNewItemView"
+﻿<Window x:Class="HardwareInventoryApp.ViewModels.AddNewItemViewModel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HardwareInventoryApp.Views"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="AddNewItemView" Height="515" Width="450">
+        Title="AddNewItemView" Height="775" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -20,33 +20,45 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Nazwa urządzenia" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" />
-        <DatePicker Grid.Row="1" materialDesign:HintAssist.Hint="Data zakupu" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="10" />
-        <TextBox Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Cena" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" />
-        <ComboBox Grid.Row="2" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Kategoria" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10" >
+        <TextBox x:Name="ItemName" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Nazwa urządzenia" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" />
+        <DatePicker x:Name="DateOfPurchase" Grid.Row="1" materialDesign:HintAssist.Hint="Data zakupu" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="10" />
+        <TextBox x:Name="Price" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Cena" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" />
+        <ComboBox x:Name="Category" Grid.Row="2" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Kategoria" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image />
-                        <TextBlock />
+                        <Image Source="{Binding ImagePath}" Width="20" Margin="5" />
+                        <TextBlock Text="{Binding CategoryName}" Margin="5" />
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Row="3" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Sklep" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" />
+        <TextBox x:Name="Shop" Grid.Row="3" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Sklep" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" />
         <StackPanel Grid.Row="4" Margin="10" >
             <TextBlock Text="Gwarancja" />
-            <Slider Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="100" />
+            <Slider x:Name="Warranty" Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="100" />
         </StackPanel>
-        <CheckBox Grid.Row="4" Grid.Column="1" Content="dożywotnia" Margin="10" />
+        <CheckBox x:Name="IsLifetime" Grid.Row="4" Grid.Column="1" Content="dożywotnia" Margin="10" />
         <StackPanel Grid.Row="5" Margin="10" >
             <TextBlock Text="Zwrot" />
-            <Slider Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="100" />
+            <Slider x:Name="Return" Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="100" />
         </StackPanel>
-        <CheckBox Grid.Row="5" Grid.Column="1" Content="bez ograniczeń" Margin="10" />
-        <Button Grid.Row="6" Grid.ColumnSpan="2" Margin="20">Dodaj</Button>
+        <CheckBox x:Name="WithoutLimits" Grid.Row="5" Grid.Column="1" Content="bez ograniczeń" Margin="10" />
+        <TextBox x:Name="Note" Grid.Row="6" Grid.ColumnSpan="2" Height="120"  Margin="10" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Notatki/opis/uwagi"/>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Click="AddPicture" Margin="10" materialDesign:HintAssist.Hint="Dodaj zdjęcie paragonu lub faktury">Dodaj zdjęcie</Button>
+            <TextBlock x:Name="PictureName" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Click="AddDocument" Margin="10" materialDesign:HintAssist.Hint="Dodaj dowolny dokument w formacie pdf">Dodaj dokument</Button>
+            <TextBlock x:Name="DocumentName" VerticalAlignment="Center" />
+        </StackPanel>
+        <Button Grid.Row="9" Grid.ColumnSpan="2" Margin="20" Click="AddNewItem">Dodaj</Button>
         <!--<StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button Margin="10">Anuluj</Button>
             <Button Margin="10">Dodaj</Button>

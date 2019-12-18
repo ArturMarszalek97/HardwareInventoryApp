@@ -19,9 +19,6 @@ namespace HardwareInventoryApp.Views
     /// </summary>
     public partial class AddNewItemView : Window
     {
-        public AddNewItemView()
-        {
-            InitializeComponent();
-        }
+
     }
 }
