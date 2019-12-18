@@ -84,7 +84,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\Data.cs" />
+    <Compile Include="Helpers\EventArgs.cs" />
+    <Compile Include="Helpers\EventRaiser.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="IoCContainer\ContainerConfig.cs" />
     <Compile Include="ViewModels\AddNewItemViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />

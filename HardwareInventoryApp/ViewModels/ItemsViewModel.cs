@@ -9,12 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HardwareInventoryApp.ViewModels
 {
     public class ItemsViewModel : PropertyChangedBase
     {
         private BindableCollection<Item> listOfItems;
+
+        private ICommand _command;
 
         public BindableCollection<Item> ListOfItems
         {
@@ -29,7 +32,22 @@ namespace HardwareInventoryApp.ViewModels
             {
                 this.ListOfItems.Add(item);
             }
-            //this.ListOfItems = Data.Items;
+        }
+
+        public ICommand Command
+        {
+            get
+            {
+                return _command ?? (_command = new RelayCommand(x =>
+                {
+                    DoStuff(x as Item);
+                }));
+            }
+        }
+
+        private void DoStuff(Item item)
+        {
+            MessageBox.Show(item.ItemName + " element clicked");
         }
 
         public void AddNewItem()
