@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using Autofac;
+using Caliburn.Micro;
 using HardwareInventoryApp.Helpers;
 using HardwareInventoryApp.Views;
 using HardwareInventoryService.Models.Models;
@@ -18,6 +19,15 @@ namespace HardwareInventoryApp.ViewModels
         private BindableCollection<Item> listOfItems;
 
         private ICommand _command;
+        private Item selectedItem;
+        private ICommand _remove;
+
+        public ICommand Remove
+        {
+            get { return _remove; }
+            set { _remove = value; }
+        }
+
 
         public BindableCollection<Item> ListOfItems
         {
@@ -27,11 +37,17 @@ namespace HardwareInventoryApp.ViewModels
 
         public ItemsViewModel()
         {
+            this.InitRelayCommands();
             this.ListOfItems = new BindableCollection<Item>();
             foreach (var item in Data.Items)
             {
                 this.ListOfItems.Add(item);
             }
+        }
+
+        private void InitRelayCommands()
+        {
+            this.Remove = new RelayCommand(x => this.RemoveItem());
         }
 
         public ICommand Command
@@ -40,14 +56,38 @@ namespace HardwareInventoryApp.ViewModels
             {
                 return _command ?? (_command = new RelayCommand(x =>
                 {
-                    DoStuff(x as Item);
+                    SetSelectedItem(x as Item);
                 }));
             }
         }
 
-        private void DoStuff(Item item)
+        private void SetSelectedItem(Item item)
         {
-            MessageBox.Show(item.ItemName + " element clicked");
+            this.selectedItem = item;
+        }
+
+        private void RemoveItem()
+        {
+            if (this.selectedItem == null)
+            {
+                MessageBox.Show("Nie wybrano żadnego elementu z listy!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (MessageBox.Show($"Czy na pewno chcesz usunąć przedmiot: {this.selectedItem.ItemName}?", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                this.ListOfItems.Remove(this.selectedItem);
+            }
+        }
+
+        private void EditItem()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ViewDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void AddNewItem()
