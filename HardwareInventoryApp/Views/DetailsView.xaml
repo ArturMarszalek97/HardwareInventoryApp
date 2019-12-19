@@ -27,44 +27,44 @@
 
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
             <materialDesign:PackIcon Kind="CardTextOutline" Margin="5" />
-            <TextBlock x:Name="ItemName" Grid.ColumnSpan="2" Text="Nazwa przedmiotu:" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock Grid.ColumnSpan="2" Text="Nazwa przedmiotu:" FontWeight="Bold" Margin="5" />
+            <TextBlock x:Name="ItemName" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="Calendar" Margin="5" />
-            <TextBlock x:Name="DateOfPurchase" Grid.Row="1" Text="Data zakupu:" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock Grid.Row="1" Text="Data zakupu:" FontWeight="Bold" Margin="5" />
+            <TextBlock x:Name="DateOfPurchase" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="Money" Margin="5" />
-            <TextBlock x:Name="Price" Grid.Column="1" Grid.Row="1" Text="Cena:" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="Cena:" FontWeight="Bold" Margin="5" />
+            <TextBlock x:Name="Price" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="FormatListBulleted" Margin="5" />
-            <TextBlock x:Name="Category" Grid.Row="2" Grid.ColumnSpan="2" Text="Kategoria:" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Kategoria:" FontWeight="Bold" Margin="5" />
+            <TextBlock x:Name="Category" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="OfficeBuilding" Margin="5" />
-            <TextBlock x:Name="Shop" Grid.Row="3" Grid.ColumnSpan="2" Text="Sklep:" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="Sklep:" FontWeight="Bold" Margin="5" />
+            <TextBlock x:Name="Shop" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="CheckboxMarkedCircleOutline" Margin="5" />
             <TextBlock Text="Gwarancja:" Grid.Row="4" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock x:Name="Warranty" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="Backburger" Margin="5" />
             <TextBlock Text="Zwrot:" Grid.Row="5" FontWeight="Bold" Margin="5" />
-            <TextBlock />
+            <TextBlock x:Name="Return" />
         </StackPanel>
         
 
