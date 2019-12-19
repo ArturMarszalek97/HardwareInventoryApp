@@ -1,7 +1,10 @@
-﻿using Caliburn.Micro;
+﻿using Autofac;
+using Caliburn.Micro;
 using HardwareInventoryApp.Helpers;
 using HardwareInventoryService.Models.Models;
+using HardwareInventoryService.ServicesReferences.Contracts;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,10 +17,18 @@ namespace HardwareInventoryApp.ViewModels
         private ICommand _command;
         private Item selectedItem;
         private ICommand _remove;
-
         private ICommand _edit;
-
         private ICommand _details;
+        private ICacheService _cacheService;
+
+        private ICommand _addNewItem;
+
+        public ICommand AddItem
+        {
+            get { return _addNewItem; }
+            set { _addNewItem = value; }
+        }
+
 
         public ICommand Details
         {
@@ -47,6 +58,7 @@ namespace HardwareInventoryApp.ViewModels
 
         public ItemsViewModel()
         {
+            this._cacheService = IoCContainer.ContainerConfig._container.Resolve<ICacheService>();
             this.InitRelayCommands();
             this.ListOfItems = new BindableCollection<Item>();
             foreach (var item in Data.Items)
@@ -57,6 +69,7 @@ namespace HardwareInventoryApp.ViewModels
 
         private void InitRelayCommands()
         {
+            this.AddItem = new RelayCommand(x => this.AddNewItem());
             this.Remove = new RelayCommand(x => this.RemoveItem());
             this.Edit = new RelayCommand(x => this.EditItem());
             this.Details = new RelayCommand(x => this.ShowDetails());
@@ -78,7 +91,7 @@ namespace HardwareInventoryApp.ViewModels
             this.selectedItem = item;
         }
 
-        public void AddNewItem()
+        public async Task AddNewItem()
         {
             var addNewItemViewModel = new AddNewItemViewModel();
 
@@ -130,6 +143,8 @@ namespace HardwareInventoryApp.ViewModels
                 item.PDFDocumentName = addNewItemViewModel.GetDocumentName();
 
                 this.listOfItems.Add(item);
+
+                await this._cacheService.AddItemAsync(item);
             }
         }
 

@@ -107,7 +107,7 @@
                                  HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                  Margin="70">
             <StackPanel>
-                <Button x:Name="AddNewRecord3" ToolTip="Dodaj" Command="{Binding Path=Add}"
+                <Button x:Name="AddNewRecord3" ToolTip="Dodaj" Command="{Binding Path=AddItem}"
                         Background="{DynamicResource PrimaryHueMidBrush}"
                         Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
                     <materialDesign:PackIcon Kind="Add" />
