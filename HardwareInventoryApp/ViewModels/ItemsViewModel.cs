@@ -1,14 +1,7 @@
-﻿using Autofac;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using HardwareInventoryApp.Helpers;
-using HardwareInventoryApp.Views;
 using HardwareInventoryService.Models.Models;
 using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -27,7 +20,6 @@ namespace HardwareInventoryApp.ViewModels
             get { return _remove; }
             set { _remove = value; }
         }
-
 
         public BindableCollection<Item> ListOfItems
         {
@@ -64,30 +56,6 @@ namespace HardwareInventoryApp.ViewModels
         private void SetSelectedItem(Item item)
         {
             this.selectedItem = item;
-        }
-
-        private void RemoveItem()
-        {
-            if (this.selectedItem == null)
-            {
-                MessageBox.Show("Nie wybrano żadnego elementu z listy!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (MessageBox.Show($"Czy na pewno chcesz usunąć przedmiot: {this.selectedItem.ItemName}?", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                this.ListOfItems.Remove(this.selectedItem);
-            }
-        }
-
-        private void EditItem()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ViewDetails()
-        {
-            throw new NotImplementedException();
         }
 
         public void AddNewItem()
@@ -142,6 +110,30 @@ namespace HardwareInventoryApp.ViewModels
                 item.PDFDocumentName = addNewItemViewModel.GetDocumentName();
 
                 this.listOfItems.Add(item);
+            }
+        }
+
+        private void ViewDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditItem()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemoveItem()
+        {
+            if (this.selectedItem == null)
+            {
+                MessageBox.Show("Nie wybrano żadnego elementu z listy!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (MessageBox.Show($"Czy na pewno chcesz usunąć przedmiot: {this.selectedItem.ItemName}?", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                this.ListOfItems.Remove(this.selectedItem);
             }
         }
     }
