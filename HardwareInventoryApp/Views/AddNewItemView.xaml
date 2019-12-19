@@ -59,9 +59,5 @@
             <TextBlock x:Name="DocumentName" VerticalAlignment="Center" />
         </StackPanel>
         <Button Grid.Row="9" Grid.ColumnSpan="2" Margin="20" Click="AddNewItem">Dodaj</Button>
-        <!--<StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Margin="10">Anuluj</Button>
-            <Button Margin="10">Dodaj</Button>
-        </StackPanel>-->
     </Grid>
 </Window>
