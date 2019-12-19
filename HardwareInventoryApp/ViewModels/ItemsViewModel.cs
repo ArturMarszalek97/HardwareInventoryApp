@@ -17,6 +17,15 @@ namespace HardwareInventoryApp.ViewModels
 
         private ICommand _edit;
 
+        private ICommand _details;
+
+        public ICommand Details
+        {
+            get { return _details; }
+            set { _details = value; }
+        }
+
+
         public ICommand Edit
         {
             get { return _edit; }
@@ -50,6 +59,7 @@ namespace HardwareInventoryApp.ViewModels
         {
             this.Remove = new RelayCommand(x => this.RemoveItem());
             this.Edit = new RelayCommand(x => this.EditItem());
+            this.Details = new RelayCommand(x => this.ShowDetails());
         }
 
         public ICommand Command
@@ -123,9 +133,11 @@ namespace HardwareInventoryApp.ViewModels
             }
         }
 
-        private void ViewDetails()
+        private void ShowDetails()
         {
-            throw new NotImplementedException();
+            var detailsViewModel = new DetailsViewModel(this.selectedItem);
+
+            detailsViewModel.Show();
         }
 
         private void EditItem()

@@ -19,9 +19,6 @@ namespace HardwareInventoryApp.Views
     /// </summary>
     public partial class DetailsView : Window
     {
-        public DetailsView()
-        {
-            InitializeComponent();
-        }
+
     }
 }
