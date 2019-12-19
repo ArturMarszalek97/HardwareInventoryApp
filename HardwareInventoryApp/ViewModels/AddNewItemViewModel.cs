@@ -17,6 +17,8 @@ namespace HardwareInventoryApp.ViewModels
         private List<Categories> categories;
         private byte[] pictureByteArray;
         private byte[] pdfByteArray;
+        private string pictureName;
+        private string documentName;
 
         public AddNewItemViewModel()
         {
@@ -91,12 +93,18 @@ namespace HardwareInventoryApp.ViewModels
             {
                 this.pictureByteArray = File.ReadAllBytes(openFileDialog.FileName);
                 this.PictureName.Text = Path.GetFileName(openFileDialog.FileName);
+                this.pictureName = Path.GetFileName(openFileDialog.FileName);
             }
         }
 
         public byte[] GetPicture()
         {
             return this.pictureByteArray;
+        }
+
+        public string GetPictureName()
+        {
+            return this.pictureName;
         }
 
         private void AddDocument(object sender, RoutedEventArgs e)
@@ -110,12 +118,18 @@ namespace HardwareInventoryApp.ViewModels
             {
                 this.pdfByteArray = File.ReadAllBytes(openFileDialog.FileName);
                 this.DocumentName.Text = Path.GetFileName(openFileDialog.FileName);
+                this.documentName = Path.GetFileName(openFileDialog.FileName);
             }
         }
 
         public byte[] GetDocument()
         {
             return this.pdfByteArray;
+        }
+
+        public string GetDocumentName()
+        {
+            return this.documentName;
         }
 
         private void AddNewItem(object sender, RoutedEventArgs e)

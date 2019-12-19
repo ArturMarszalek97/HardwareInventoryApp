@@ -58,6 +58,6 @@
             <Button Click="AddDocument" Margin="10" materialDesign:HintAssist.Hint="Dodaj dowolny dokument w formacie pdf">Dodaj dokument</Button>
             <TextBlock x:Name="DocumentName" VerticalAlignment="Center" />
         </StackPanel>
-        <Button Grid.Row="9" Grid.ColumnSpan="2" Margin="20" Click="AddNewItem">Zatwierdź zmiany</Button>
+        <Button Grid.Row="9" Grid.ColumnSpan="2" Margin="20" Click="ConfirmChanges">Zatwierdź zmiany</Button>
     </Grid>
 </Window>

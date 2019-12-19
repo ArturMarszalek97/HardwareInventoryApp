@@ -23,7 +23,6 @@ namespace HardwareInventoryApp.IoCContainer
             builder.RegisterType<CacheService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<LoginPanelViewModel>().SingleInstance();
             builder.RegisterType<MainWindowViewModel>().SingleInstance();
-            builder.RegisterType<ContextMenuViewModel>().SingleInstance();
             builder.Register<IWindowManager>(c => new WindowManager()).InstancePerLifetimeScope();
 
             _container = builder.Build();

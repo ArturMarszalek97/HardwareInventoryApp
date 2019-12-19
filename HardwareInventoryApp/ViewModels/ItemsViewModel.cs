@@ -136,8 +136,10 @@ namespace HardwareInventoryApp.ViewModels
                 }
 
                 item.Picture = addNewItemViewModel.GetPicture();
+                item.PictureName = addNewItemViewModel.GetPictureName();
 
                 item.PDFDocument = addNewItemViewModel.GetDocument();
+                item.PDFDocumentName = addNewItemViewModel.GetDocumentName();
 
                 this.listOfItems.Add(item);
             }
