@@ -1,0 +1,109 @@
+﻿<Window x:Class="HardwareInventoryApp.Views.DetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HardwareInventoryApp.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="DetailsView" Height="450" Width="550">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="CardTextOutline" Margin="5" />
+            <TextBlock x:Name="ItemName" Grid.ColumnSpan="2" Text="Nazwa przedmiotu:" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="Calendar" Margin="5" />
+            <TextBlock x:Name="DateOfPurchase" Grid.Row="1" Text="Data zakupu:" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="Money" Margin="5" />
+            <TextBlock x:Name="Price" Grid.Column="1" Grid.Row="1" Text="Cena:" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="FormatListBulleted" Margin="5" />
+            <TextBlock x:Name="Category" Grid.Row="2" Grid.ColumnSpan="2" Text="Kategoria:" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="OfficeBuilding" Margin="5" />
+            <TextBlock x:Name="Shop" Grid.Row="3" Grid.ColumnSpan="2" Text="Sklep:" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="CheckboxMarkedCircleOutline" Margin="5" />
+            <TextBlock Text="Gwarancja:" Grid.Row="4" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="Backburger" Margin="5" />
+            <TextBlock Text="Zwrot:" Grid.Row="5" FontWeight="Bold" Margin="5" />
+            <TextBlock />
+        </StackPanel>
+        
+
+        <TextBox x:Name="Note" Grid.Row="6" IsReadOnly="True" Grid.ColumnSpan="2" Height="120"  Margin="10" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Notatki/opis/uwagi"/>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Click="AddPicture" Margin="10" materialDesign:HintAssist.Hint="Dodaj zdjęcie paragonu lub faktury">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="ImageArea" Margin="3" />
+                    <TextBlock Text="Pokaż zdjęcie" Margin="2" />
+                </StackPanel>
+            </Button>
+            <Button Click="AddPicture" Margin="10" materialDesign:HintAssist.Hint="Dodaj zdjęcie paragonu lub faktury">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Download" Margin="3" />
+                    <TextBlock Text="Pobierz zdjęcie" Margin="2" />
+                </StackPanel>
+            </Button>
+            <TextBlock x:Name="PictureName" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Click="AddDocument" Margin="10" materialDesign:HintAssist.Hint="Dodaj dowolny dokument w formacie pdf">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="FileDocument" Margin="3" />
+                    <TextBlock Text="Pokaż dokument" Margin="2" />
+                </StackPanel>
+            </Button>
+            <Button Click="AddDocument" Margin="10" materialDesign:HintAssist.Hint="Dodaj dowolny dokument w formacie pdf">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Download" Margin="3" />
+                    <TextBlock Text="Pobierz dokument" Margin="2" />
+                </StackPanel>
+            </Button>
+            <TextBlock x:Name="DocumentName" VerticalAlignment="Center" />
+        </StackPanel>
+        <Button Grid.Row="9" Grid.ColumnSpan="2" Margin="20" Click="AddNewItem">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <materialDesign:PackIcon Kind="ArrowLeftBoldOutline" Margin="5" />
+                <TextBlock Text="powrót" Margin="1" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
