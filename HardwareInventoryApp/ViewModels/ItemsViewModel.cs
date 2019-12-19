@@ -15,6 +15,15 @@ namespace HardwareInventoryApp.ViewModels
         private Item selectedItem;
         private ICommand _remove;
 
+        private ICommand _edit;
+
+        public ICommand Edit
+        {
+            get { return _edit; }
+            set { _edit = value; }
+        }
+
+
         public ICommand Remove
         {
             get { return _remove; }
@@ -40,6 +49,7 @@ namespace HardwareInventoryApp.ViewModels
         private void InitRelayCommands()
         {
             this.Remove = new RelayCommand(x => this.RemoveItem());
+            this.Edit = new RelayCommand(x => this.EditItem());
         }
 
         public ICommand Command
@@ -120,7 +130,64 @@ namespace HardwareInventoryApp.ViewModels
 
         private void EditItem()
         {
-            throw new NotImplementedException();
+            if (this.selectedItem == null)
+            {
+                MessageBox.Show("Nie wybrano żadnego elementu z listy!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var editItemViewModel = new EditItemViewModel(this.selectedItem);
+
+            if (editItemViewModel.ShowDialog() == true)
+            {
+                var editedItem = new Item()
+                {
+                    ItemName = editItemViewModel.ItemName.Text,
+                    DateOfPurchase = editItemViewModel.DateOfPurchase.SelectedDate.Value,
+                    Price = Convert.ToInt64(editItemViewModel.Price.Text),
+                    Category = editItemViewModel.Category.Text,
+                    Shop = editItemViewModel.Shop.Text,
+                    Note = editItemViewModel.Note.Text
+                };
+
+                var selectedCategory = (Categories)editItemViewModel.Category.SelectedItem;
+
+                editedItem.Category = selectedCategory.CategoryName;
+                editedItem.ImageSource = selectedCategory.ImagePath;
+
+                editedItem.UserID = Data.Session.UserId;
+
+                editedItem.DateOfPurchaseToDisplay = editItemViewModel.DateOfPurchase.SelectedDate.Value.ToShortDateString();
+
+                if (editItemViewModel.IsLifetime.IsChecked == true)
+                {
+                    editedItem.WarrantyToDisplay = "Dożywotnia";
+                }
+                else
+                {
+                    editedItem.Warranty = Convert.ToInt32(editItemViewModel.Warranty.Value);
+                    editedItem.WarrantyToDisplay = editItemViewModel.Warranty.Value.ToString();
+                }
+
+                if (editItemViewModel.WithoutLimits.IsChecked == true)
+                {
+                    editedItem.ReturnToDisplay = "Bez limitów";
+                }
+                else
+                {
+                    editedItem.Return = Convert.ToInt32(editItemViewModel.Return.Value);
+                    editedItem.ReturnToDisplay = editItemViewModel.Return.Value.ToString();
+                }
+
+                editedItem.Picture = editItemViewModel.GetPicture();
+                editedItem.PictureName = editItemViewModel.GetPictureName();
+
+                editedItem.PDFDocument = editItemViewModel.GetDocument();
+                editedItem.PDFDocumentName = editItemViewModel.GetDocumentName();
+
+                this.ListOfItems.Remove(this.selectedItem);
+                this.listOfItems.Add(editedItem);
+            }
         }
 
         private void RemoveItem()
