@@ -69,9 +69,9 @@ namespace HardwareInventoryApp.ViewModels
 
         private void InitRelayCommands()
         {
-            this.AddItem = new RelayCommand(x => this.AddNewItem());
-            this.Remove = new RelayCommand(x => this.RemoveItem());
-            this.Edit = new RelayCommand(x => this.EditItem());
+            this.AddItem = new RelayCommand(async (x) => await this.AddNewItem());
+            this.Remove = new RelayCommand(async (x) => await this.RemoveItem());
+            this.Edit = new RelayCommand(async (x) => await this.EditItem());
             this.Details = new RelayCommand(x => this.ShowDetails());
         }
 
@@ -109,6 +109,19 @@ namespace HardwareInventoryApp.ViewModels
 
                 var selectedCategory = (Categories)addNewItemViewModel.Category.SelectedItem;
 
+                //var maxItemID = 0;
+                //foreach (var itemInList in this.ListOfItems)
+                //{
+                //    if (itemInList.ItemID > maxItemID)
+                //    {
+                //        maxItemID = itemInList.ItemID;
+                //    }
+                //}
+
+                //item.ItemID = maxItemID + 1;
+
+                item.KeyForCache = Guid.NewGuid();
+
                 item.Category = selectedCategory.CategoryName;
                 item.ImageSource = selectedCategory.ImagePath;
 
@@ -144,7 +157,14 @@ namespace HardwareInventoryApp.ViewModels
 
                 this.listOfItems.Add(item);
 
-                await this._cacheService.AddItemAsync(item);
+                try
+                {
+                    await this._cacheService.AddItemAsync(item);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
             }
         }
 
@@ -155,7 +175,7 @@ namespace HardwareInventoryApp.ViewModels
             detailsViewModel.Show();
         }
 
-        private void EditItem()
+        private async Task EditItem()
         {
             if (this.selectedItem == null)
             {
@@ -212,12 +232,17 @@ namespace HardwareInventoryApp.ViewModels
                 editedItem.PDFDocument = editItemViewModel.GetDocument();
                 editedItem.PDFDocumentName = editItemViewModel.GetDocumentName();
 
+                editedItem.ItemID = this.selectedItem.ItemID;
+                editedItem.KeyForCache = this.selectedItem.KeyForCache;
+
                 this.ListOfItems.Remove(this.selectedItem);
                 this.listOfItems.Add(editedItem);
+
+                await this._cacheService.UpdateItemAsync(editedItem);
             }
         }
 
-        private void RemoveItem()
+        private async Task RemoveItem()
         {
             if (this.selectedItem == null)
             {
@@ -228,6 +253,7 @@ namespace HardwareInventoryApp.ViewModels
             if (MessageBox.Show($"Czy na pewno chcesz usunąć przedmiot: {this.selectedItem.ItemName}?", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 this.ListOfItems.Remove(this.selectedItem);
+                await this._cacheService.RemoveItemAsync(this.selectedItem);
             }
         }
     }
