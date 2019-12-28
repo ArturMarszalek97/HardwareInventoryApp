@@ -229,8 +229,20 @@ namespace HardwareInventoryApp.ViewModels
                 editedItem.Picture = editItemViewModel.GetPicture();
                 editedItem.PictureName = editItemViewModel.GetPictureName();
 
+                if (string.IsNullOrEmpty(editedItem.PictureName) || editedItem.Picture == null)
+                {
+                    editedItem.Picture = this.selectedItem.Picture;
+                    editedItem.PictureName = this.selectedItem.PictureName;
+                }
+
                 editedItem.PDFDocument = editItemViewModel.GetDocument();
                 editedItem.PDFDocumentName = editItemViewModel.GetDocumentName();
+
+                if (string.IsNullOrEmpty(editedItem.PDFDocumentName) || editedItem.PDFDocument == null)
+                {
+                    editedItem.PDFDocument = this.selectedItem.PDFDocument;
+                    editedItem.PDFDocumentName = this.selectedItem.PDFDocumentName;
+                }
 
                 editedItem.ItemID = this.selectedItem.ItemID;
                 editedItem.KeyForCache = this.selectedItem.KeyForCache;
