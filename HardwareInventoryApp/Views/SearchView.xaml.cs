@@ -48,16 +48,43 @@ namespace HardwareInventoryApp.Views
 
         private bool UserFilter(object obj)
         {
-            if (string.IsNullOrEmpty(txtFilter.Text))
+            if (string.IsNullOrEmpty(txtFilter.Text) && string.IsNullOrEmpty(ShopFilter.Text))
                 return true;
-            if (String.IsNullOrEmpty(txtFilter.Text) == false)
+
+            if (string.IsNullOrEmpty(txtFilter.Text) == false && string.IsNullOrEmpty(ShopFilter.Text))
                 return ((obj as Item).ItemName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) == 0);
+
+            if (string.IsNullOrEmpty(ShopFilter.Text) == false && string.IsNullOrEmpty(txtFilter.Text))
+                return ((obj as Item).Shop.IndexOf(ShopFilter.Text, StringComparison.OrdinalIgnoreCase) == 0);
 
             return false;
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (txtFilter.Text.Length > 0)
+            {
+                this.ShopFilter.IsReadOnly = true;
+            }
+            else
+            {
+                this.ShopFilter.IsReadOnly = false;
+            }
+
+            CollectionViewSource.GetDefaultView(this.searchList.ItemsSource).Refresh();
+        }
+
+        private void ShopFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ShopFilter.Text.Length > 0)
+            {
+                this.txtFilter.IsReadOnly = true;
+            }
+            else
+            {
+                this.txtFilter.IsReadOnly = false;
+            }
+
             CollectionViewSource.GetDefaultView(this.searchList.ItemsSource).Refresh();
         }
     }

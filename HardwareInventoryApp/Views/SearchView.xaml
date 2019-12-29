@@ -15,10 +15,10 @@
 
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-            <TextBlock Text="Filtruj po nazwie: " Foreground="Blue" FontWeight="Bold" />
-            <TextBox Name="txtFilter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtFilter_TextChanged">
-
-            </TextBox>
+            <TextBlock Text="Filtruj po nazwie: " Foreground="OrangeRed" FontWeight="Bold" Margin="5" />
+            <TextBox Name="txtFilter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtFilter_TextChanged"></TextBox>
+            <TextBlock Text="Filtruj po nazwie sklepu: " Foreground="OrangeRed" FontWeight="Bold" Margin="25,5,5,5" />
+            <TextBox Name="ShopFilter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="ShopFilter_TextChanged"></TextBox>
         </StackPanel>
         
         <!--<ListView Grid.Row="1" x:Name="searchList" Foreground="Black" FontWeight="Bold">
@@ -39,12 +39,15 @@
         </ListView>-->
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5" Width="780">
-            <DataGrid x:Name="searchList" SelectionMode="Single" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" >
+            <DataGrid x:Name="searchList" SelectionMode="Single" IsReadOnly="True" SelectionUnit="FullRow" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=ItemName}" ></DataGridTextColumn>
                     <DataGridTextColumn Header="Cena" Binding="{Binding Path=Price}" ></DataGridTextColumn>
                     <DataGridTextColumn Header="Kategoria" Binding="{Binding Path=Category}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sklep" Binding="{Binding Path=Shop}" ></DataGridTextColumn>
                     <DataGridTextColumn Header="Data zakupu" Binding="{Binding Path=DateOfPurchaseToDisplay}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Okres gwarancji" Binding="{Binding Path=Warranty}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Zwrot" Binding="{Binding Path=Return}" ></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
