@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -19,6 +20,36 @@ namespace HardwareInventoryApp.ViewModels
         private readonly ICacheService _cacheService;
 
         private ImageSource accountPhoto;
+
+        private System.Windows.Controls.ListViewItem _selectedOption;
+
+        public System.Windows.Controls.ListViewItem SelectedOption
+        {
+            get { return _selectedOption; }
+            set { _selectedOption = value; NotifyOfPropertyChange(() => SelectedOption); this.ActivateUserControl(value); }
+        }
+
+        private void ActivateUserControl(ListViewItem value)
+        {
+            if (value == null)
+                return;
+
+            switch (value.Name)
+            {
+                case "listViewItem":
+                    {
+                        var itemsVM = new ItemsViewModel();
+                        ActivateItem(itemsVM);
+                    } break;
+                case "listViewItem1":
+                    {
+                        var searchVM = new SearchViewModel();
+                        ActivateItem(searchVM);
+                    } break;
+                default:
+                    break;
+            }
+        }
 
         public ImageSource AccountPhoto
         {
@@ -33,8 +64,6 @@ namespace HardwareInventoryApp.ViewModels
             this.AccountPhoto = this.ToImage(Data.Session.AccountPhoto);
 
             this.GetData();
-
-            
 
             var itemsVM = new ItemsViewModel();
             ActivateItem(itemsVM);
