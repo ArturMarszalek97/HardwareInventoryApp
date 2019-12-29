@@ -21,7 +21,7 @@
             </TextBox>
         </StackPanel>
         
-        <ListView Grid.Row="1" x:Name="searchList" Foreground="Black" FontWeight="Bold">
+        <!--<ListView Grid.Row="1" x:Name="searchList" Foreground="Black" FontWeight="Bold">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -36,6 +36,17 @@
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>-->
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5" Width="780">
+            <DataGrid x:Name="searchList" SelectionMode="Single" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=ItemName}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding Path=Price}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Kategoria" Binding="{Binding Path=Category}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Data zakupu" Binding="{Binding Path=DateOfPurchaseToDisplay}" ></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>
