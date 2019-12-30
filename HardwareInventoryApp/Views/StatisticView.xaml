@@ -14,11 +14,21 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="48" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="120" />
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Frame x:Name="Frame" NavigationUIVisibility="Hidden" />
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+            <Frame x:Name="SecondFrame" NavigationUIVisibility="Hidden" />
+        </Grid>
         
-        <MetroChart:PieChart Grid.Row="1" ChartTitle="tytuł" ChartSubTitle="podtytuł" Foreground="LightGray" >
+        <!--<MetroChart:PieChart Grid.Row="1" ChartTitle="tytuł" ChartSubTitle="podtytuł" Foreground="LightGray" >
             <MetroChart:PieChart.Series>
                 <MetroChart:ChartSeries
                                         DisplayMember="Category"
@@ -35,6 +45,6 @@
                                         SeriesTitle="Consumo"
                                         ValueMember="TotalCostForMonth" HorizontalAlignment="Center" />
             </MetroChart:ClusteredColumnChart.Series>
-        </MetroChart:ClusteredColumnChart>
+        </MetroChart:ClusteredColumnChart>-->
     </Grid>
 </Window>

@@ -16,6 +16,8 @@ namespace HardwareInventoryApp.Views
             InitializeComponent();
 
             DataContext = new ItemPieViewModel();
+            this.Frame.Content = new TestPageView();
+            this.SecondFrame.Content = new ColumnBarView();
         }
 
         internal class ItemPieViewModel
