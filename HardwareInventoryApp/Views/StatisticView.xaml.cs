@@ -1,4 +1,5 @@
 ﻿using HardwareInventoryApp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -14,15 +15,14 @@ namespace HardwareInventoryApp.Views
         {
             InitializeComponent();
 
-            ItemPie consumo = new ItemPie();
-            DataContext = new ConsumoViewModel(/*consumo*/);
+            DataContext = new ItemPieViewModel();
         }
 
-        internal class ConsumoViewModel
+        internal class ItemPieViewModel
         {
             public List<ItemPie> List { get; private set; }
 
-            public ConsumoViewModel()
+            public ItemPieViewModel()
             {
                 List = new List<ItemPie>();
                 this.PrepareList();
@@ -51,6 +51,39 @@ namespace HardwareInventoryApp.Views
                         }
                     }
                 }
+
+                // prepare second part
+
+                List<string> months = new List<string>() { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };
+                var currentMonth = DateTime.Now.Month;
+
+                for (int i = 0; i < 12; i++)
+                {
+                    if (currentMonth - 1 == 11)
+                    {
+                        this.List.Add(new ItemPie() { MonthToDisplay = months[i], Month = i + 1, TotalCostForMonth = 0 });
+                    }
+                    else
+                    {
+                        this.List.Add(new ItemPie() { MonthToDisplay = months[currentMonth + i], Month = currentMonth + 1, TotalCostForMonth = 0 });
+                    }
+                }
+
+                var tras = Data.Items.Where(x => x.DateOfPurchase > DateTime.Now.AddYears(-1)).ToList();
+
+                foreach (var statement in List)
+                {
+                    if (string.IsNullOrEmpty(statement.MonthToDisplay))
+                        continue;
+
+                    foreach (var item in tras)
+                    {
+                        if (statement.Month == item.DateOfPurchase.Month)
+                        {
+                            statement.TotalCostForMonth += item.Price;
+                        }
+                    }
+                }
             }
         }
 
@@ -59,10 +92,58 @@ namespace HardwareInventoryApp.Views
             public string Category { get; set; }
             public float TotalCost { get; set; }
 
+            public int Month { get; set; }
+
+            public string MonthToDisplay { get; set; }
+
+            public float TotalCostForMonth { get; set; }
+
             public ItemPie()
             {
 
             }
+        }
+
+        internal class AnnualStatementViewModel
+        {
+            public List<AnnualStatement> AnnualStatements { get; private set; }
+
+            public AnnualStatementViewModel()
+            {
+                AnnualStatements = new List<AnnualStatement>();
+                this.PrepareList();
+            }
+
+            private void PrepareList()
+            {
+                List<string> months = new List<string>() { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };
+                var currentMonth = DateTime.Now.Month;
+
+                for (int i = 0; i < 12; i++)
+                {
+                    this.AnnualStatements.Add(new AnnualStatement() { Month = months[currentMonth - 1], TotalCost = 0 });
+                }
+
+                var tras = Data.Items.Where(x => x.DateOfPurchase > DateTime.Now.AddYears(-1)).ToList();
+
+                foreach (var statement in AnnualStatements)
+                {
+                    foreach (var item in tras)
+                    {
+                        if (statement.Month == item.DateOfPurchase.Month.ToString())
+                        {
+                            statement.TotalCost += item.Price;
+                        }
+                    }
+                }
+            }
+        }
+
+        internal class AnnualStatement
+        {
+            public string Month { get; set; }
+
+            public float TotalCost { get; set; }
         }
     }
 }
