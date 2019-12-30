@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\LoginPanelViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="Views\AddNewItemView.xaml.cs">
       <DependentUpon>AddNewItemView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +120,9 @@
     </Compile>
     <Compile Include="Views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatisticView.xaml.cs">
+      <DependentUpon>StatisticView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

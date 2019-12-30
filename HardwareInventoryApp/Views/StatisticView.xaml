@@ -1,0 +1,21 @@
+﻿<Window x:Class="HardwareInventoryApp.Views.StatisticView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HardwareInventoryApp.Views"
+        xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+        mc:Ignorable="d"
+        Title="StatisticView" Height="450" Width="800">
+    <Grid>
+        <MetroChart:PieChart ChartTitle="tytuł" ChartSubTitle="podtytuł" Foreground="LightGray" >
+            <MetroChart:PieChart.Series>
+                <MetroChart:ChartSeries
+                                        DisplayMember="Category"
+                                        ItemsSource="{Binding Path=List}"
+                                        SeriesTitle="Consumo"
+                                        ValueMember="TotalCost" HorizontalAlignment="Center"/>
+            </MetroChart:PieChart.Series>
+        </MetroChart:PieChart>
+    </Grid>
+</Window>

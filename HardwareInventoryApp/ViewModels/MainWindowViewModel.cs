@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -45,6 +46,14 @@ namespace HardwareInventoryApp.ViewModels
                     {
                         var searchVM = new SearchViewModel();
                         ActivateItem(searchVM);
+                    } break;
+                case "listViewItem2":
+                    {
+                        //var statisticsVM = new StatisticsViewModel();
+                        //ActivateItem(statisticsVM);
+
+                        Window window = new Views.StatisticView();
+                        window.Show();
                     } break;
                 default:
                     break;
